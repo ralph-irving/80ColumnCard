@@ -141,19 +141,19 @@ INDONE: pha                     ; Duplicate character
 ; CRTC timing tables
 TABLE:  
     ; this is per listing in Videx docs
-    .byte   123     ; R0 - Horizontal Total Register
-    .byte   80      ; R1 - Horizontal Displayed Register (80 columns)
-    .byte   94      ; R2 - Horizontal Sync Position Register
-    .byte   41      ; R3 - Horizontal Sync Width Register (clone has 47)
+    .byte   $7b     ; R0 - Horizontal Total Register
+    .byte   $50     ; R1 - Horizontal Displayed Register (80 columns)
+    .byte   $5f     ; R2 - Horizontal Sync Position Register
+    .byte   $19     ; R3 - Horizontal Sync Width Register (clone has 47) (41)
 
-    .byte   27      ; R4 - Vertical Total Register
-    .byte   08      ; R5 - Vertical Total Adjust Register
-    .byte   24      ; R6 - Vertical Displayed Register (24 lines)
-    .byte   25      ; R7 - Vertical Sync Position Register
+    .byte   $1f     ; R4 - Vertical Total Register (27)
+    .byte   $08     ; R5 - Vertical Total Adjust Register
+    .byte   $18     ; R6 - Vertical Displayed Register (24 lines)
+    .byte   $1c     ; R7 - Vertical Sync Position Register (25)
 
     .byte   $00     ; R8 - Interlace Mode Register (normal sync mode)
-    .byte   $08     ; R9 - Maximum Scan Line Register
-    .byte   $e0     ; R10 - Cursor End Register
+    .byte   $07     ; R9 - Maximum Scan Line Register ($08)
+    .byte   $c0     ; R10 - Cursor End Register ($e0)
     .byte   $08     ; R11 - Cursor End Register
     .byte   $00     ; R12 - Start Address Register (H)
     .byte   $00     ; R13 - Start Address Register (L)
