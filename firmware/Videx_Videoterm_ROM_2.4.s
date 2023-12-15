@@ -13,6 +13,8 @@
 
 SLOT             = $03
 
+; Zero Page
+
 CH              := $0024
 CV              := $0025
 BASL            := $0028        ; base address for text output (lo)
@@ -23,36 +25,64 @@ KSWL            := $0038
 KSWH            := $0039
 RNDL            := $004E
 RNDH            := $004F
-IN              := $0200
+
+; Temporaries
+
 CRFLAG          := $0478
-BASEL           := $0478 + SLOT
 ASAV1           := $04F8
-BASEH           := $04F8 + SLOT
-XSAV1           := $0578        ; Unused
-CHORZ           := $0578 + SLOT ; cursor horizontal displacement
 TEMPX           := $05F8
-CVERT           := $05F8 + SLOT ; cursor vertical displacement
 OLDCHAR         := $0678
-BYTE            := $0678 + SLOT
 N0              := $06F8
-START           := $06F8 + SLOT
-MSLOT           := $0778        ; Unused
-POFF            := $0778 + SLOT
+
+; Slot N Permanents
+
+BASEL           := $0478 + SLOT ; screen base address low
+BASEH           := $04F8 + SLOT ; screen base address high
+CHORZ           := $0578 + SLOT ; cursor horizontal position
+CVERT           := $05F8 + SLOT ; cursor vertical position
+BYTE            := $0678 + SLOT ; 1/0 byte for pascal entries
+START           := $06F8 + SLOT ; screen start address
+POFF            := $0778 + SLOT ; power off and lead in counter
+
+; Video Flags Setup
+;
+; B0 - Alternate character set flag
+;    0 - select standard character rom
+;    1 - select alternate character rom
+; B1 - N/A
+; B2 - N/A
+; B3 - N/A
+; B4 - Display 18/24 lines of text flag
+;    0 - 18 lines
+;    1 - 24 lines 
+; B5 - N/A
+; B6 - Upper/Lower case flag - CTRL-A to toggle
+;    0 - Upper case
+;    1 - Lower case
+; B7 - Get line flag
+;    0 - Input came from a videoterm "GET" statement
+;    1 - Input came from Apple GETLN routine. See Apple II Reference Manual, pages 33-34.
+
 FLAGS           := $07F8 + SLOT
+
 KBD             := $C000
 KBDSTRB         := $C010
 SPKR            := $C030
 SETAN0          := $C058
+RESETAN0        := $C059
 BUTN2           := $C063
 DEV0            := $C080 + $10 * SLOT
 DEV1            := $C081 + $10 * SLOT
 DISP0           := $CC00
 DISP1           := $CD00
+
+IN              := $0200
 MON_VTAB        := $FC22
 MON_SETKBD      := $FE89
 MON_SETVID      := $FE93
 IORTS           := $FFCB
 
+; On entry: X = IOSEL slot index Y = DEVSEL slot index
 ; Set up 6545 CRTC and clear screen (6845 is not 100% compatible)
 
 SETUP:  lda     POFF            ; Get power off flag
@@ -73,7 +103,7 @@ LOOP:   txa
         inx
         cpx     #$10
         bne     LOOP            ; Continue loop until done
-LC82A:  sta     $C059
+LC82A:  sta     RESETAN0
         rts
 
 EXIT:   lda     FLAGS
@@ -453,7 +483,7 @@ WSKIP:  rts                     ; Recover X register
 OUTPT1: pha                     ; Save character
         lda     #$F7
         jsr     FLGCLR
-        sta     $C059
+        sta     RESETAN0
         lda     POFF
         and     #$07            ; Check for lead in
         bne     LEAD            ; Branch for lead in
