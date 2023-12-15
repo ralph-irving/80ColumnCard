@@ -11,6 +11,8 @@
 .org       $C800
 .listbytes unlimited
 
+SLOT             = $03
+
 CH              := $0024
 CV              := $0025
 BASL            := $0028        ; base address for text output (lo)
@@ -23,27 +25,27 @@ RNDL            := $004E
 RNDH            := $004F
 IN              := $0200
 CRFLAG          := $0478
-BASEL           := $047B
+BASEL           := $0478 + SLOT
 ASAV1           := $04F8
-BASEH           := $04FB
-XSAV1           := $0578
-CHORZ           := $057B        ; cursor horizontal displacement
+BASEH           := $04F8 + SLOT
+XSAV1           := $0578        ; Unused
+CHORZ           := $0578 + SLOT ; cursor horizontal displacement
 TEMPX           := $05F8
-CVERT           := $05FB        ; cursor vertical displacement
+CVERT           := $05F8 + SLOT ; cursor vertical displacement
 OLDCHAR         := $0678
-BYTE            := $067B
+BYTE            := $0678 + SLOT
 N0              := $06F8
-START           := $06FB
-MSLOT           := $0778
-POFF            := $077B
-FLAGS           := $07FB
+START           := $06F8 + SLOT
+MSLOT           := $0778        ; Unused
+POFF            := $0778 + SLOT
+FLAGS           := $07F8 + SLOT
 KBD             := $C000
 KBDSTRB         := $C010
 SPKR            := $C030
 SETAN0          := $C058
 BUTN2           := $C063
-DEV0            := $C0B0
-DEV1            := $C0B1
+DEV0            := $C080 + $10 * SLOT
+DEV1            := $C081 + $10 * SLOT
 DISP0           := $CC00
 DISP1           := $CD00
 MON_VTAB        := $FC22
@@ -51,7 +53,7 @@ MON_SETKBD      := $FE89
 MON_SETVID      := $FE93
 IORTS           := $FFCB
 
-; Set up CRTC and clear screen
+; Set up 6545 CRTC and clear screen (6845 is not 100% compatible)
 
 SETUP:  lda     POFF            ; Get power off flag
         and     #$F8            ; Strip off lead in counters
