@@ -12,6 +12,7 @@
 .listbytes unlimited
 
 SLOT             = $03
+ROMSTARTH        = $C0 + SLOT
 
 ; Zero Page
 
@@ -547,7 +548,7 @@ ESCNEW: jsr     RDKEY
 ESC2:   jmp     ESC1
         nop
 
-; Basic initial I/O entry point ($C300, ROM offset $0300)
+; Basic initial I/O entry point ($Cs00, ROM offset $0300)
 
         bit     IORTS           ; Set VFlag on initial entry
         bvs     ENTR
@@ -599,7 +600,7 @@ WHERE:  pha                     ; Save registers on stack
         pha
         lda     XSAVE           ; Save character
         stx     XSAVE           ; Save input buffer index
-        ldx     #$C3
+        ldx     #ROMSTARTH      ; Start of slot ROM high byte location
         stx     CRFLAG
         pha
         bvc     IO              ; Go to IO if not initial entry
@@ -701,3 +702,4 @@ ESCTBL:
         .byte   <HOME - 1
 XLTBL:  .byte $c4, $c2, $c1, $ff, $c3
         nop
+;       .res    1024,$ff
