@@ -1,0 +1,510 @@
+                  * = $C800 
+$C800   $BD $B8 $06   LDA $06B8,X
+$C803   $29 $F8       AND #$F8
+$C805   $C9 $30       CMP #$30
+$C807   $F0 $2A       BEQ $C833
+$C809   $A9 $30       LDA #$30
+$C80B   $9D $B8 $06   STA $06B8,X
+$C80E   $9D $38 $07   STA $0738,X
+$C811   $8E $78 $07   STX $0778
+$C814   $A9 $00       LDA #$00
+$C816   $9D $38 $06   STA $0638,X
+$C819   $20 $64 $C9   JSR $C964
+$C81C   $AC $F8 $06   LDY $06F8
+$C81F   $A2 $00       LDX #$00
+$C821   $8A           TXA 
+$C822   $99 $80 $C0   STA $C080,Y
+$C825   $BD $9E $C8   LDA $C89E,X
+$C828   $99 $81 $C0   STA $C081,Y
+$C82B   $E8           INX 
+$C82C   $E0 $10       CPX #$10
+$C82E   $D0 $F1       BNE $C821
+$C830   $AE $78 $07   LDX $0778
+$C833   $8D $59 $C0   STA $C059
+$C836   $60           RTS 
+$C837   $BD $38 $07   LDA $0738,X
+$C83A   $29 $08       AND #$08
+$C83C   $F0 $09       BEQ $C847
+$C83E   $20 $93 $FE   JSR $FE93
+$C841   $20 $22 $FC   JSR $FC22
+$C844   $20 $89 $FE   JSR $FE89
+$C847   $68           PLA 
+$C848   $A8           TAY 
+$C849   $68           PLA 
+$C84A   $AA           TAX 
+$C84B   $68           PLA 
+$C84C   $60           RTS 
+$C84D   $20 $CE $C8   JSR $C8CE
+$C850   $E6 $4F       INC $4F
+$C852   $AD $00 $C0   LDA $C000
+$C855   $10 $F9       BPL $C850
+$C857   $2C $10 $C0   BIT $C010
+$C85A   $C9 $8B       CMP #$8B
+$C85C   $D0 $02       BNE $C860
+$C85E   $A9 $DB       LDA #$DB
+$C860   $C9 $81       CMP #$81
+$C862   $D0 $0A       BNE $C86E
+$C864   $BD $38 $07   LDA $0738,X
+$C867   $49 $40       EOR #$40
+$C869   $9D $38 $07   STA $0738,X
+$C86C   $B0 $DF       BCS $C84D
+$C86E   $48           PHA 
+$C86F   $BD $38 $07   LDA $0738,X
+$C872   $0A           ASL A
+$C873   $0A           ASL A
+$C874   $68           PLA 
+$C875   $90 $1F       BCC $C896
+$C877   $C9 $B0       CMP #$B0
+$C879   $90 $1B       BCC $C896
+$C87B   $2C $63 $C0   BIT $C063
+$C87E   $30 $14       BMI $C894
+$C880   $C9 $B0       CMP #$B0
+$C882   $F0 $0E       BEQ $C892
+$C884   $C9 $C0       CMP #$C0
+$C886   $D0 $02       BNE $C88A
+$C888   $A9 $D0       LDA #$D0
+$C88A   $C9 $DB       CMP #$DB
+$C88C   $90 $08       BCC $C896
+$C88E   $29 $CF       AND #$CF
+$C890   $D0 $04       BNE $C896
+$C892   $A9 $DD       LDA #$DD
+$C894   $09 $20       ORA #$20
+$C896   $48           PHA 
+$C897   $29 $7F       AND #$7F
+$C899   $9D $B8 $05   STA $05B8,X
+$C89C   $68           PLA 
+$C89D   $60           RTS 
+$C89E   $7B           ??? 
+$C89F   $50 $62       BVC $C903
+$C8A1   $29 $1B       AND #$1B
+$C8A3   $08           PHP 
+$C8A4   $18           CLC 
+$C8A5   $19 $00 $08   ORA $0800,Y
+$C8A8   $E8           INX 
+$C8A9   $09 $00       ORA #$00
+$C8AB   $00           BRK 
+$C8AC   $00           BRK 
+$C8AD   $00           BRK 
+$C8AE   $9D $B8 $05   STA $05B8,X
+$C8B1   $A5 $25       LDA $25
+$C8B3   $DD $38 $05   CMP $0538,X
+$C8B6   $F0 $06       BEQ $C8BE
+$C8B8   $9D $38 $05   STA $0538,X
+$C8BB   $20 $1F $CA   JSR $CA1F
+$C8BE   $A5 $24       LDA $24
+$C8C0   $DD $B8 $04   CMP $04B8,X
+$C8C3   $90 $03       BCC $C8C8
+$C8C5   $9D $B8 $04   STA $04B8,X
+$C8C8   $BD $B8 $05   LDA $05B8,X
+$C8CB   $20 $B2 $CA   JSR $CAB2
+$C8CE   $AC $F8 $06   LDY $06F8
+$C8D1   $A9 $0F       LDA #$0F
+$C8D3   $99 $80 $C0   STA $C080,Y
+$C8D6   $BD $B8 $04   LDA $04B8,X
+$C8D9   $C9 $50       CMP #$50
+$C8DB   $B0 $13       BCS $C8F0
+$C8DD   $7D $B8 $03   ADC $03B8,X
+$C8E0   $99 $81 $C0   STA $C081,Y
+$C8E3   $A9 $0E       LDA #$0E
+$C8E5   $99 $80 $C0   STA $C080,Y
+$C8E8   $A9 $00       LDA #$00
+$C8EA   $7D $38 $04   ADC $0438,X
+$C8ED   $99 $81 $C0   STA $C081,Y
+$C8F0   $60           RTS 
+$C8F1   $49 $C0       EOR #$C0
+$C8F3   $C9 $07       CMP #$07
+$C8F5   $B0 $1F       BCS $C916
+$C8F7   $A8           TAY 
+$C8F8   $A9 $C9       LDA #$C9
+$C8FA   $48           PHA 
+$C8FB   $B9 $F9 $CB   LDA $CBF9,Y
+$C8FE   $48           PHA 
+$C8FF   $60           RTS 
+$C900   $EA           NOP 
+$C901   $EA           NOP 
+$C902   $EA           NOP 
+$C903   $BC $B8 $04   LDY $04B8,X
+$C906   $A9 $A0       LDA #$A0
+$C908   $20 $97 $CA   JSR $CA97
+$C90B   $C8           INY 
+$C90C   $C0 $50       CPY #$50
+$C90E   $90 $F8       BCC $C908
+$C910   $60           RTS 
+$C911   $A9 $34       LDA #$34
+$C913   $9D $B8 $06   STA $06B8,X
+$C916   $60           RTS 
+$C917   $A9 $32       LDA #$32
+$C919   $D0 $F8       BNE $C913
+$C91B   $A0 $C0       LDY #$C0
+$C91D   $A9 $80       LDA #$80
+$C91F   $E9 $01       SBC #$01
+$C921   $D0 $FC       BNE $C91F
+$C923   $AD $30 $C0   LDA $C030
+$C926   $88           DEY 
+$C927   $D0 $F4       BNE $C91D
+$C929   $60           RTS 
+$C92A   $BC $B8 $04   LDY $04B8,X
+$C92D   $C0 $50       CPY #$50
+$C92F   $90 $05       BCC $C936
+$C931   $48           PHA 
+$C932   $20 $B0 $C9   JSR $C9B0
+$C935   $68           PLA 
+$C936   $BC $B8 $04   LDY $04B8,X
+$C939   $20 $97 $CA   JSR $CA97
+$C93C   $FE $B8 $04   INC $04B8,X
+$C93F   $2C $78 $04   BIT $0478
+$C942   $10 $07       BPL $C94B
+$C944   $BD $B8 $04   LDA $04B8,X
+$C947   $C9 $50       CMP #$50
+$C949   $B0 $65       BCS $C9B0
+$C94B   $60           RTS 
+$C94C   $BC $B8 $04   LDY $04B8,X
+$C94F   $BD $38 $05   LDA $0538,X
+$C952   $48           PHA 
+$C953   $20 $22 $CA   JSR $CA22
+$C956   $20 $06 $C9   JSR $C906
+$C959   $A0 $00       LDY #$00
+$C95B   $68           PLA 
+$C95C   $69 $00       ADC #$00
+$C95E   $C9 $18       CMP #$18
+$C960   $90 $F0       BCC $C952
+$C962   $B0 $23       BCS $C987
+$C964   $20 $6A $C9   JSR $C96A
+$C967   $98           TYA 
+$C968   $F0 $E8       BEQ $C952
+$C96A   $A9 $00       LDA #$00
+$C96C   $9D $B8 $04   STA $04B8,X
+$C96F   $9D $38 $05   STA $0538,X
+$C972   $A8           TAY 
+$C973   $F0 $12       BEQ $C987
+$C975   $DE $B8 $04   DEC $04B8,X
+$C978   $10 $9C       BPL $C916
+$C97A   $A9 $4F       LDA #$4F
+$C97C   $9D $B8 $04   STA $04B8,X
+$C97F   $BD $38 $05   LDA $0538,X
+$C982   $F0 $92       BEQ $C916
+$C984   $DE $38 $05   DEC $0538,X
+$C987   $4C $1F $CA   JMP $CA1F
+$C98A   $A9 $30       LDA #$30
+$C98C   $9D $B8 $06   STA $06B8,X
+$C98F   $68           PLA 
+$C990   $09 $80       ORA #$80
+$C992   $C9 $B1       CMP #$B1
+$C994   $D0 $68       BNE $C9FE
+$C996   $A9 $08       LDA #$08
+$C998   $8D $58 $C0   STA $C058
+$C99B   $D0 $5C       BNE $C9F9
+$C99D   $C9 $B2       CMP #$B2
+$C99F   $D0 $52       BNE $C9F3
+$C9A1   $A9 $FE       LDA #$FE
+$C9A3   $3D $38 $07   AND $0738,X
+$C9A6   $9D $38 $07   STA $0738,X
+$C9A9   $60           RTS 
+$C9AA   $4E $78 $04   LSR $0478
+$C9AD   $4C $C8 $C8   JMP $C8C8
+$C9B0   $20 $43 $CA   JSR $CA43
+$C9B3   $FE $38 $05   INC $0538,X
+$C9B6   $BD $38 $05   LDA $0538,X
+$C9B9   $C9 $18       CMP #$18
+$C9BB   $90 $65       BCC $CA22
+$C9BD   $DE $38 $05   DEC $0538,X
+$C9C0   $18           CLC 
+$C9C1   $AC $F8 $06   LDY $06F8
+$C9C4   $BD $38 $06   LDA $0638,X
+$C9C7   $69 $05       ADC #$05
+$C9C9   $29 $7F       AND #$7F
+$C9CB   $9D $38 $06   STA $0638,X
+$C9CE   $20 $2E $CA   JSR $CA2E
+$C9D1   $A9 $0D       LDA #$0D
+$C9D3   $99 $80 $C0   STA $C080,Y
+$C9D6   $BD $B8 $03   LDA $03B8,X
+$C9D9   $99 $81 $C0   STA $C081,Y
+$C9DC   $A9 $0C       LDA #$0C
+$C9DE   $99 $80 $C0   STA $C080,Y
+$C9E1   $BD $38 $04   LDA $0438,X
+$C9E4   $99 $81 $C0   STA $C081,Y
+$C9E7   $A9 $17       LDA #$17
+$C9E9   $20 $22 $CA   JSR $CA22
+$C9EC   $A0 $00       LDY #$00
+$C9EE   $20 $06 $C9   JSR $C906
+$C9F1   $B0 $94       BCS $C987
+$C9F3   $C9 $B3       CMP #$B3
+$C9F5   $D0 $25       BNE $CA1C
+$C9F7   $A9 $01       LDA #$01
+$C9F9   $1D $38 $07   ORA $0738,X
+$C9FC   $D0 $A8       BNE $C9A6
+$C9FE   $D0 $15       BNE $CA15
+$CA00   $2C $CB $FF   BIT $FFCB
+$CA03   $70 $04       BVS $CA09
+$CA05   $38           SEC 
+$CA06   $90 $18       BCC $CA20
+$CA08   $B8           CLV 
+$CA09   $8D $FF $CF   STA $CFFF
+$CA0C   $20 $15 $CB   JSR $CB15
+$CA0F   $60           RTS 
+$CA10   $91 $28       STA ($28),Y
+$CA12   $38           SEC 
+$CA13   $B0 $F0       BCS $CA05
+$CA15   $C9 $B0       CMP #$B0
+$CA17   $D0 $84       BNE $C99D
+$CA19   $4C $09 $C8   JMP $C809
+$CA1C   $4C $2A $C9   JMP $C92A
+$CA1F   $BD $38 $05   LDA $0538,X
+$CA22   $8D $F8 $04   STA $04F8
+$CA25   $0A           ASL A
+$CA26   $0A           ASL A
+$CA27   $18           CLC 
+$CA28   $6D $F8 $04   ADC $04F8
+$CA2B   $7D $38 $06   ADC $0638,X
+$CA2E   $48           PHA 
+$CA2F   $4A           LSR A
+$CA30   $4A           LSR A
+$CA31   $4A           LSR A
+$CA32   $4A           LSR A
+$CA33   $9D $38 $04   STA $0438,X
+$CA36   $68           PLA 
+$CA37   $0A           ASL A
+$CA38   $0A           ASL A
+$CA39   $0A           ASL A
+$CA3A   $0A           ASL A
+$CA3B   $9D $B8 $03   STA $03B8,X
+$CA3E   $60           RTS 
+$CA3F   $C9 $0D       CMP #$0D
+$CA41   $D0 $06       BNE $CA49
+$CA43   $A9 $00       LDA #$00
+$CA45   $9D $B8 $04   STA $04B8,X
+$CA48   $60           RTS 
+$CA49   $09 $80       ORA #$80
+$CA4B   $C9 $A0       CMP #$A0
+$CA4D   $B0 $CD       BCS $CA1C
+$CA4F   $C9 $87       CMP #$87
+$CA51   $90 $08       BCC $CA5B
+$CA53   $A8           TAY 
+$CA54   $A9 $C9       LDA #$C9
+$CA56   $48           PHA 
+$CA57   $B9 $D5 $C9   LDA $C9D5,Y
+$CA5A   $48           PHA 
+$CA5B   $60           RTS 
+$CA5C   $1A           ??? 
+$CA5D   $74           ??? 
+$CA5E   $15 $B2       ORA $B2,X
+$CA60   $4B           ??? 
+$CA61   $63           ??? 
+$CA62   $AF           ??? 
+$CA63   $A0 $F6       LDY #$F6
+$CA65   $15 $15       ORA $15,X
+$CA67   $15 $15       ORA $15,X
+$CA69   $15 $15       ORA $15,X
+$CA6B   $15 $15       ORA $15,X
+$CA6D   $15 $69       ORA $69,X
+$CA6F   $10 $15       BPL $CA86
+$CA71   $3B           ??? 
+$CA72   $02           ??? 
+$CA73   $16 $7E       ASL $7E,X
+$CA75   $8E $78 $07   STX $0778
+$CA78   $98           TYA 
+$CA79   $48           PHA 
+$CA7A   $18           CLC 
+$CA7B   $7D $B8 $03   ADC $03B8,X
+$CA7E   $85 $35       STA $35
+$CA80   $A9 $00       LDA #$00
+$CA82   $7D $38 $04   ADC $0438,X
+$CA85   $48           PHA 
+$CA86   $0A           ASL A
+$CA87   $29 $0C       AND #$0C
+$CA89   $0D $F8 $06   ORA $06F8
+$CA8C   $A8           TAY 
+$CA8D   $B9 $80 $C0   LDA $C080,Y
+$CA90   $68           PLA 
+$CA91   $4A           LSR A
+$CA92   $A6 $35       LDX $35
+$CA94   $68           PLA 
+$CA95   $A8           TAY 
+$CA96   $60           RTS 
+$CA97   $0A           ASL A
+$CA98   $48           PHA 
+$CA99   $BD $38 $07   LDA $0738,X
+$CA9C   $4A           LSR A
+$CA9D   $68           PLA 
+$CA9E   $6A           ROR A
+$CA9F   $48           PHA 
+$CAA0   $20 $75 $CA   JSR $CA75
+$CAA3   $68           PLA 
+$CAA4   $B0 $05       BCS $CAAB
+$CAA6   $9D $00 $CC   STA $CC00,X
+$CAA9   $90 $03       BCC $CAAE
+$CAAB   $9D $00 $CD   STA $CD00,X
+$CAAE   $AE $78 $07   LDX $0778
+$CAB1   $60           RTS 
+$CAB2   $48           PHA 
+$CAB3   $A9 $F7       LDA #$F7
+$CAB5   $20 $A3 $C9   JSR $C9A3
+$CAB8   $8D $59 $C0   STA $C059
+$CABB   $AC $F8 $06   LDY $06F8
+$CABE   $20 $E4 $CB   JSR $CBE4
+$CAC1   $BD $B8 $06   LDA $06B8,X
+$CAC4   $29 $07       AND #$07
+$CAC6   $D0 $04       BNE $CACC
+$CAC8   $68           PLA 
+$CAC9   $4C $3F $CA   JMP $CA3F
+$CACC   $29 $04       AND #$04
+$CACE   $F0 $03       BEQ $CAD3
+$CAD0   $4C $8A $C9   JMP $C98A
+$CAD3   $68           PLA 
+$CAD4   $38           SEC 
+$CAD5   $E9 $20       SBC #$20
+$CAD7   $29 $7F       AND #$7F
+$CAD9   $48           PHA 
+$CADA   $DE $B8 $06   DEC $06B8,X
+$CADD   $BD $B8 $06   LDA $06B8,X
+$CAE0   $29 $03       AND #$03
+$CAE2   $D0 $15       BNE $CAF9
+$CAE4   $68           PLA 
+$CAE5   $C9 $18       CMP #$18
+$CAE7   $B0 $03       BCS $CAEC
+$CAE9   $9D $38 $05   STA $0538,X
+$CAEC   $AD $F8 $05   LDA $05F8
+$CAEF   $C9 $50       CMP #$50
+$CAF1   $B0 $03       BCS $CAF6
+$CAF3   $9D $B8 $04   STA $04B8,X
+$CAF6   $4C $1F $CA   JMP $CA1F
+$CAF9   $68           PLA 
+$CAFA   $8D $F8 $05   STA $05F8
+$CAFD   $60           RTS 
+$CAFE   $EA           NOP 
+$CAFF   $EA           NOP 
+$CB00   $2C $CB $FF   BIT $FFCB
+$CB03   $70 $04       BVS $CB09
+$CB05   $38           SEC 
+$CB06   $90 $18       BCC $CB20
+$CB08   $B8           CLV 
+$CB09   $8D $FF $CF   STA $CFFF
+$CB0C   $20 $15 $CB   JSR $CB15
+$CB0F   $60           RTS 
+$CB10   $91 $28       STA ($28),Y
+$CB12   $38           SEC 
+$CB13   $B0 $F0       BCS $CB05
+$CB15   $48           PHA 
+$CB16   $8A           TXA 
+$CB17   $48           PHA 
+$CB18   $98           TYA 
+$CB19   $48           PHA 
+$CB1A   $08           PHP 
+$CB1B   $78           SEI 
+$CB1C   $86 $35       STX $35
+$CB1E   $BA           TSX 
+$CB1F   $68           PLA 
+$CB20   $68           PLA 
+$CB21   $68           PLA 
+$CB22   $68           PLA 
+$CB23   $A8           TAY 
+$CB24   $68           PLA 
+$CB25   $68           PLA 
+$CB26   $9A           TXS 
+$CB27   $AA           TAX 
+$CB28   $98           TYA 
+$CB29   $48           PHA 
+$CB2A   $8A           TXA 
+$CB2B   $0A           ASL A
+$CB2C   $0A           ASL A
+$CB2D   $0A           ASL A
+$CB2E   $0A           ASL A
+$CB2F   $A8           TAY 
+$CB30   $8C $F8 $06   STY $06F8
+$CB33   $8E $78 $04   STX $0478
+$CB36   $68           PLA 
+$CB37   $28           PLP 
+$CB38   $48           PHA 
+$CB39   $50 $10       BVC $CB4B
+$CB3B   $A9 $10       LDA #$10
+$CB3D   $85 $38       STA $38
+$CB3F   $86 $39       STX $39
+$CB41   $A9 $07       LDA #$07
+$CB43   $85 $36       STA $36
+$CB45   $86 $37       STX $37
+$CB47   $20 $00 $C8   JSR $C800
+$CB4A   $18           CLC 
+$CB4B   $90 $75       BCC $CBC2
+$CB4D   $68           PLA 
+$CB4E   $A4 $35       LDY $35
+$CB50   $F0 $22       BEQ $CB74
+$CB52   $88           DEY 
+$CB53   $AD $78 $06   LDA $0678
+$CB56   $C9 $88       CMP #$88
+$CB58   $F0 $1A       BEQ $CB74
+$CB5A   $D9 $00 $02   CMP $0200,Y
+$CB5D   $F0 $15       BEQ $CB74
+$CB5F   $49 $20       EOR #$20
+$CB61   $D9 $00 $02   CMP $0200,Y
+$CB64   $D0 $3E       BNE $CBA4
+$CB66   $AD $78 $06   LDA $0678
+$CB69   $99 $00 $02   STA $0200,Y
+$CB6C   $B0 $06       BCS $CB74
+$CB6E   $20 $4D $C8   JSR $C84D
+$CB71   $20 $F1 $C8   JSR $C8F1
+$CB74   $A9 $80       LDA #$80
+$CB76   $20 $F9 $C9   JSR $C9F9
+$CB79   $20 $4D $C8   JSR $C84D
+$CB7C   $C9 $9B       CMP #$9B
+$CB7E   $F0 $EE       BEQ $CB6E
+$CB80   $C9 $8D       CMP #$8D
+$CB82   $D0 $05       BNE $CB89
+$CB84   $48           PHA 
+$CB85   $20 $03 $C9   JSR $C903
+$CB88   $68           PLA 
+$CB89   $C9 $95       CMP #$95
+$CB8B   $D0 $12       BNE $CB9F
+$CB8D   $BC $B8 $04   LDY $04B8,X
+$CB90   $20 $75 $CA   JSR $CA75
+$CB93   $B0 $05       BCS $CB9A
+$CB95   $BD $00 $CC   LDA $CC00,X
+$CB98   $90 $03       BCC $CB9D
+$CB9A   $BD $00 $CD   LDA $CD00,X
+$CB9D   $09 $80       ORA #$80
+$CB9F   $8D $78 $06   STA $0678
+$CBA2   $D0 $08       BNE $CBAC
+$CBA4   $20 $4D $C8   JSR $C84D
+$CBA7   $A0 $00       LDY #$00
+$CBA9   $8C $78 $06   STY $0678
+$CBAC   $BA           TSX 
+$CBAD   $E8           INX 
+$CBAE   $E8           INX 
+$CBAF   $E8           INX 
+$CBB0   $9D $00 $01   STA $0100,X
+$CBB3   $AE $78 $07   LDX $0778
+$CBB6   $A9 $00       LDA #$00
+$CBB8   $85 $24       STA $24
+$CBBA   $BD $38 $05   LDA $0538,X
+$CBBD   $85 $25       STA $25
+$CBBF   $4C $37 $C8   JMP $C837
+$CBC2   $68           PLA 
+$CBC3   $BC $38 $07   LDY $0738,X
+$CBC6   $10 $08       BPL $CBD0
+$CBC8   $AC $78 $06   LDY $0678
+$CBCB   $C0 $E0       CPY #$E0
+$CBCD   $90 $01       BCC $CBD0
+$CBCF   $98           TYA 
+$CBD0   $20 $AE $C8   JSR $C8AE
+$CBD3   $A9 $7F       LDA #$7F
+$CBD5   $20 $A3 $C9   JSR $C9A3
+$CBD8   $BD $B8 $04   LDA $04B8,X
+$CBDB   $E9 $47       SBC #$47
+$CBDD   $90 $D7       BCC $CBB6
+$CBDF   $69 $1F       ADC #$1F
+$CBE1   $18           CLC 
+$CBE2   $90 $D4       BCC $CBB8
+$CBE4   $AD $00 $C0   LDA $C000
+$CBE7   $C9 $93       CMP #$93
+$CBE9   $D0 $0D       BNE $CBF8
+$CBEB   $2C $10 $C0   BIT $C010
+$CBEE   $20 $52 $C8   JSR $C852
+$CBF1   $C9 $83       CMP #$83
+$CBF3   $F0 $03       BEQ $CBF8
+$CBF5   $2C $10 $C0   BIT $C010
+$CBF8   $60           RTS 
+$CBF9   $63           ??? 
+$CBFA   $3B           ??? 
+$CBFB   $74           ??? 
+$CBFC   $B2           ??? 
+$CBFD   $7E $02 $4B   ROR $4B02,X
+$CC00                .END
