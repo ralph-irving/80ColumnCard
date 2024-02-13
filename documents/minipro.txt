@@ -1,0 +1,17 @@
+Adrian the problem with the minipro and reading then 2716 is that it cant supply enough current to the VPP pin, if you manually add 5v to the VPP. Since its driven by a normal current limited its not enough. The same problem occurs with the retrochip tester that have some other option now to read 2716. There is a big difference between brand of the 2716. Intel seems to be more power hungry on the VPP
+
+FWIW Looks like there were *1 'enhanced' versions of the Motorola MC6845 that included the same cursor skew support as the 6545. (E.g. parts marked MC6845P1) - but those particular Motorola parts are much rarer than the 6545... From their datasheet the UM6845 clone also apparently includes the cursor skew. Other clones do, too. Just check the datasheet definition for register R8.
+
+For the Sup'R'Terminal card, I sent an email with better pictures and the circuit I traced.
+for the adapter card, all pins except pin 5 of the 74LS195 pass directly to the socket.
+Pin 5 from the motherboard goes to Pins 12&13 of the 00
+Pin 11 of the 00 connects to 10 on the 00
+Pin 8 on the 00 goes to 195 IC pin 5
+Pin 9 on the 00 goes to header pin 4 the 00
+Pin 10 from the motherboard socket connects to 4&5 of the 00
+Pin 6 from the 00 goes to connection A
+Pin 13 from the motherboard socket connects to 1&2 of the 00
+Pin 3 of the 00 goes to header connection C
+Header connection B goes to ground pin 8 on all ic and motherboard header.
+pin 16 of all are tied to VCC
+
